@@ -63,11 +63,12 @@ class Personaje{
 			if(typeofplayer==1) posx = 400.0f;
 			if(typeofplayer==2) posx = 1250.0;*/
 			
-			shared_ptr<float> posx = make_shared<float>(400.0f);
+			//unique_ptr<float> posx = make_unique<float>(1250.0f);
+			//shared_ptr<float> posy = make_shared<float>();
 			
-			if(typeofplayer==2) 
-				*posx = 1250.0f;
-			
+			//if(typeofplayer==2) 
+				//*posx = 1250.0f;
+				//posx;
 			
 				if(name == "Chainsaw-man"){
 					this->type =       "Hielo";
@@ -81,7 +82,7 @@ class Personaje{
 					this->skin.loadFromFile("Images/chainsaw-man.png");
 					this->player.setSize(Vector2f(300.0f, 400.0f));
 					this->player.setTexture(&skin);
-					this->player.setPosition(*posx,560.0f);
+					//this->player.setPosition(*posx,560.0f);
 					this->p1.complete(&skin, Vector2u(4,6), 0.2f, typeofplayer);
 				}
 				else if(name == "Gun-devil"){
@@ -96,7 +97,7 @@ class Personaje{
 					this->skin.loadFromFile("Images/gun-devil.png");
 					this->player.setSize(Vector2f(300.0f, 400.0f));
 					this->player.setTexture(&skin);
-					this->player.setPosition(*posx,560.0f);
+					//this->player.setPosition(*posx,560.0f);
 					this->p1.complete(&skin, Vector2u(4,6), 0.2f, typeofplayer);
 					
 				}
@@ -112,7 +113,7 @@ class Personaje{
 					this->skin.loadFromFile("Images/MAKIMA.png");
 					this->player.setSize(Vector2f(300.0f, 400.0f));
 					this->player.setTexture(&skin);
-					this->player.setPosition(*posx,560.0f);
+					//this->player.setPosition(*posx,560.0f);
 					this->p1.complete(&skin, Vector2u(4,6), 0.2f, typeofplayer);
 					
 				}
@@ -128,7 +129,7 @@ class Personaje{
 					this->skin.loadFromFile("Images/POWER_.png");
 					this->player.setSize(Vector2f(300.0f, 400.0f));
 					this->player.setTexture(&skin);
-					this->player.setPosition(*posx,560.0f);
+					//this->player.setPosition(*posx,560.0f);
 					this->p1.complete(&skin, Vector2u(4,6), 0.2f, typeofplayer);
 				}
 			}
@@ -225,45 +226,45 @@ class Personaje{
 			this->resistance3 = resistance3;
 		}
 		//Functions
-		
 		void heal(){
 			
 			srand(time(NULL));
     		float random_number = (rand()%170)+1;
     		health += random_number;
     		//cout<<"\nYour Personaje has gotten health. Your new Personaje's health is -> " <<health;
-    		
 		}
 		
 		void attack(Personaje &p2){
 	
 		//cout<<"\nYour First Personaje's health is: " <<p1.getHealth()<<endl;
-		if(advantage1 ==p2.getType() || advantage1 == p2.getType()){
+			if(advantage1 ==p2.getType() || advantage1 == p2.getType()){
 	
 		//	cout<<"\nA Personaje is attacking with a CRITICAL ATTACK other Personaje! "<<endl;
-			p2.health-=damageattack*2;
+				p2.health-=damageattack*2;
 		//	cout<<(p1.getDamageattack())*2<<" of DAMAGE!"<<endl;
 	
-		}
+			}
 		
-		else if(type==p2.getResistance1() || type==p2.getResistance2() || type==p2.getResistance3()){
+			else if(type==p2.getResistance1() || type==p2.getResistance2() || type==p2.getResistance3()){
 		//	cout<<"\nA Personaje is attacking other Personaje with a low attack"<<endl;
-			p2.health -= damageattack/2;
+				p2.health -= damageattack/2;
 		//	cout<<(p1.getDamageattack())/2<<" of damage"<<endl;
-		}
+			}
 
-		else{
+			else{
 	
 		//	cout<<"\nA Personaje is attacking other Personaje! "<<endl;
-			p2.health-=damageattack;
+				p2.health-=damageattack;
 		//	cout<<p1.getDamageattack()<<" of damage!"<<endl;
-	
-		}
+			}
 		//cout<<"\nYour Second Personaje's health now is: " <<p2.getHealth()<<endl;
-		
-
 		}
-		
+		void moveUp( ){
+			p1.moverUp();
+		}
+		void moveDown(){
+			p1.moverDown();
+		}
 
 };
 

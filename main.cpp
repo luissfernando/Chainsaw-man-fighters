@@ -13,9 +13,8 @@ void f(){
 }
 int main()
 {
-	
 	// Create the main window   con 1920.1080
-    RenderWindow window(VideoMode(1366, 768), "Computer Science's Pokemons", Style::Close | Style::Resize);
+    RenderWindow window(VideoMode(1366, 768), "Chainsaw man fighters", Style::Close | Style::Resize);
     
 	Menu menu(window.getSize().x, window.getSize().y);
 	Selection selection(window.getSize().x, window.getSize().y);
@@ -177,20 +176,20 @@ int main()
 			   					heroe2.setString(p2.getName());
 			   					//heroe2.setOrigin(-1150,-110);
 								heroe2.setOrigin(-850,-40);
-			   
+		
 			   					//Health
 								Text heroe1health;
 							    heroe1health.setFont(font);
 							    heroe1health.setCharacterSize(25);
 							    heroe1health.setString(std::to_string(p1.getHealth()));
-							    heroe1health.setOrigin(-315, -250);
+							    heroe1health.setOrigin(-315, -200);
 			    
 							    Text heroe2health;
 							    heroe2health.setFont(font);
 								//heroe1health.setColor(sf::Color::Red);
 							    heroe2health.setCharacterSize(25);
 							    heroe2health.setString(std::to_string(p2.getHealth()));
-								heroe2health.setOrigin(-980,-250);
+								heroe2health.setOrigin(-980,-200);
 								//heroe2health.setOrigin(-1380,-390);
 							    
 							    std::string life1 = std::to_string(p1.getHealth());
@@ -201,17 +200,17 @@ int main()
 							    lifee1.setFont(font);
 							    lifee1.setCharacterSize(25);
 							    lifee1.setString(life1);
-							    lifee1.setOrigin(-500, -250);
+							    lifee1.setOrigin(-500, -200);
 
 							    Text lifee2;
 							    lifee2.setFont(font);
 							    lifee2.setCharacterSize(25);
 							    lifee2.setString(life2);
-							    lifee2.setOrigin(-1150,-250);
+							    lifee2.setOrigin(-1150,-200);
 								
 								while(window.isOpen()){
 								
-									int cont = 0;
+									//int cont = 0;
 									
 									if(p1.getHealth()<=0 || p2.getHealth()<=0){
 
@@ -294,7 +293,20 @@ int main()
 										p2.attack(p1);
 										turn = 0;
 									}
+									//
+									if(Keyboard::isKeyPressed(Keyboard::W)){
+										p1.moveUp();
+									}
 									
+									if(Keyboard::isKeyPressed(Keyboard::Up)){
+										p2.moveUp();
+									}
+									if(Keyboard::isKeyPressed(Keyboard::S)){
+										p1.moveDown();
+									}
+									if(Keyboard::isKeyPressed(Keyboard::Down)){
+										p2.moveDown();
+									}
 			       					//p1.player.setTextureRect(p1.getAnimation().uvRect);
 			       					
 									window.clear();
@@ -346,7 +358,7 @@ int main()
 						
 						
 						while(window.pollEvent(gameevent)){
-						if(gameevent.type == Event::Closed){
+							if(gameevent.type == Event::Closed){
 								window.close();
 							}
 						}

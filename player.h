@@ -13,15 +13,14 @@ class Player{
 		Animation animation;
 		int typeofplayer;
 		
-		
-		
 	public:
 		int cont = 0;
 		int cont2 = 0;
-		
+		float positionY = 260.0f;
 		Player(){
 		}
-		
+		~Player(){
+		}
 		
 		void complete(Texture* texture, Vector2u imageCount, float switchTime, int typeofplayer){
 			this->typeofplayer = typeofplayer;
@@ -45,11 +44,37 @@ class Player{
 			
 		}
 		
-		~Player(){
+		void moverUp(){
+			if(typeofplayer==1){
+				if(positionY > 0 ){
+					positionY-=1;
+					body.setPosition(200.0f,positionY);
+				}
+
+			}
+			if(typeofplayer == 2){
+				if(positionY > 0){
+					positionY-=1;
+					body.setPosition(800.0f,positionY);
+				}
+			}
+
 		}
-		
-		
-		
+		void moverDown(){
+			if(typeofplayer==1){
+				if(positionY < 260 ){
+					positionY+=1;
+					body.setPosition(200.0f,positionY);
+				}
+
+			}
+			if(typeofplayer == 2){
+				if(positionY < 260){
+					positionY+=1;
+					body.setPosition(800.0f,positionY);
+				}
+			}
+		}
 		void Update(float deltaTime){
 			
 			
