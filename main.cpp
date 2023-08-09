@@ -20,6 +20,20 @@ int main()
 	Selection selection(window.getSize().x, window.getSize().y);
 	Selection2 selection2(window.getSize().x, window.getSize().y);
     
+	sf::Music musicMenu;
+	sf::SoundBuffer buffer;
+    
+	if (!musicMenu.openFromFile("Audio/FeverR.wav"))
+        return EXIT_FAILURE;
+	
+	if (!buffer.loadFromFile("Audio/shoot.wav")) {
+        return EXIT_FAILURE;
+    }
+	sf::Sound sound(buffer);
+
+	musicMenu.setLoop(true); // bucle
+    musicMenu.play();
+
     Texture background;   
     Texture backgroundmenu;
     Texture instructionss;
@@ -255,8 +269,9 @@ int main()
 									Event gameevent;
 									
 									
+									musicMenu.stop();
 									while(window.pollEvent(gameevent)){
-									if(gameevent.type == Event::Closed){
+										if(gameevent.type == Event::Closed){
 											window.close();
 										}
 									}
@@ -276,22 +291,27 @@ int main()
 										turn = 0;
 									}
 									
-									
 									p1.p1.Update(deltaTime);
 									if(Keyboard::isKeyPressed(Keyboard::C) && (turn==0)){
+										sound.play();
 										std::thread sleep(f);
 										sleep.join();
 										p1.attack(p2);
 										turn = 1;
+										sound.stop();
+										
 									}
 									
 									
 									p2.p1.Update(deltaTime);
 									if(Keyboard::isKeyPressed(Keyboard::O) && (turn==1)){
+										sound.play();
 										std::thread sleep(f);
 										sleep.join();
 										p2.attack(p1);
 										turn = 0;
+										sound.stop();
+
 									}
 									//
 									if(Keyboard::isKeyPressed(Keyboard::W)){
@@ -307,10 +327,11 @@ int main()
 									if(Keyboard::isKeyPressed(Keyboard::Down)){
 										p2.moveDown();
 									}
+								
 			       					//p1.player.setTextureRect(p1.getAnimation().uvRect);
-			       					
 									window.clear();
 			       					
+									musicMenu.play();
 			       					window.draw(backgroundd);
 			       					
 			       					window.draw(heroe1);
