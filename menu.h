@@ -1,11 +1,22 @@
 #ifndef MENU_H
 #define MENU_H
 #include <SFML/Graphics.hpp>
+
 constexpr int MAX_NUMBER_OF_ITEMS = 3;
 
 constexpr float CalculateHeight(float height, float number){
 	return height/(MAX_NUMBER_OF_ITEMS+1)*number;
 }
+class Singleton {
+	private:
+		Singleton(sf::Font font){
+
+		}
+	public:
+		Singleton(string font){
+			
+		}
+};
 
 class Menu{
 	protected:

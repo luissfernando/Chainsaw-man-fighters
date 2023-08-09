@@ -83,7 +83,7 @@ class Create_Background{
 	public:
 		Create_Background(sf::Sprite background1, sf::Sprite background2, sf::Sprite background3){
 			
-			std::unique_ptr<int> background = make_unique<int[]>(5);
+			std::shared_ptr<int> background = make_shared<int[]>(5);
 			
 		}
 };

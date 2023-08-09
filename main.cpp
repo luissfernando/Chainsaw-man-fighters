@@ -6,11 +6,14 @@
 #include "Seleccion.h"
 #include "Seleccion2.h"
 
+#include "GameFont.h"
+
 using namespace sf;
 
 void f(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
+GameFont gamefont;
 int main()
 {
 	// Create the main window   con 1920.1080
@@ -42,13 +45,13 @@ int main()
     if (!background.loadFromFile("Images/ecenario2.png"))
         return EXIT_FAILURE;
         
-	if (!backgroundmenu.loadFromFile("Images/fondomortalk.jpg"))
+	if (!backgroundmenu.loadFromFile("Images/chain_fondo.jpeg"))
         return EXIT_FAILURE;
     
     if (!instructionss.loadFromFile("Images/Instruccioness.jpg"))
     	return EXIT_FAILURE;
         
-    if (!select.loadFromFile("Images/ElegirPersonajee.jpg"))
+    if (!select.loadFromFile("Images/select_avatar.png"))
         return EXIT_FAILURE;
     
     Sprite backgroundd(background);
@@ -131,13 +134,6 @@ int main()
 									personajeone = "Power";
 								}
 								
-								// if(selection.GetPressedItem()==3){
-								// 	personajeone = "Personaje4";
-								// }
-								
-								// if(selection.GetPressedItem()==4){
-								// 	personajeone = "Personaje5";
-								// }
 								
 							}
 							
@@ -157,14 +153,6 @@ int main()
 								if(selection2.GetPressedItem()==3){
 									personajedos = "Power";
 								}
-								
-								// if(selection.GetPressedItem()==3){
-								// 	personajeone = "Personaje4";
-								// }
-								
-								// if(selection.GetPressedItem()==4){
-								// 	personajeone = "Personaje5";
-								// }
 								
 							}
 							
@@ -228,7 +216,7 @@ int main()
 									
 									if(p1.getHealth()<=0 || p2.getHealth()<=0){
 
-										for(int i =0; i<3000; i++){
+										for(int i =0; i<300; i++){
 											Event closeevent;
 											while(window.pollEvent(closeevent)){
 												if(closeevent.type == Event::Closed){
@@ -264,12 +252,10 @@ int main()
 										break;
 								   	}
 									
-									deltaTime = clock.restart().asSeconds();
+									//deltaTime = clock.restart().asSeconds();
 									
 									Event gameevent;
 									
-									
-									musicMenu.stop();
 									while(window.pollEvent(gameevent)){
 										if(gameevent.type == Event::Closed){
 											window.close();
@@ -299,7 +285,7 @@ int main()
 										p1.attack(p2);
 										turn = 1;
 										sound.stop();
-										
+
 									}
 									
 									
@@ -403,10 +389,6 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-    	
-    	
-        
-        
         // Clear screen
        	window.clear();
         // Draw the string
